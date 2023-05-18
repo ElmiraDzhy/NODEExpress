@@ -1,9 +1,9 @@
 const admin = { email: "super@gmail.com", password: "admin" };
-const yup = require("yup");
-const fs = require("fs/promises");
-const path = require("path");
+// const yup = require("yup");
+// const fs = require("fs/promises");
+// const path = require("path");
 
-const schema = yup.string().email();
+// const schema = yup.string().email();
 
 module.exports.validateUserAccess = async (req, res, next) => {
 	const { body: userData } = req;
@@ -14,13 +14,15 @@ module.exports.validateUserAccess = async (req, res, next) => {
 		}
 	}
 
-	try {
-		const userMail = await schema.validate(userData.email);
-		const filePath = path.join(__dirname, "../files/visitors.txt");
-		await fs.appendFile(filePath, userMail + "\n");
-		next();
-	} catch (err) {
-		console.log(err);
-	}
+	// try {
+	// 	const userMail = await schema.validate(userData.email);
+	// 	const filePath = path.join(__dirname, "../files/visitors.txt");
+	// 	await fs.appendFile(filePath, userMail + "\n");
+	// 	next();
+	// } catch (err) {
+	// 	console.log(err);
+	// }
+
+	next();
 };
 
