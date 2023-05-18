@@ -1,26 +1,11 @@
-module.exports.handler = (req, res) => {
-	res.end("index");
-};
+const fs = require("fs/promises");
+const path = require("path");
 
-module.exports.handler2 = (req, res) => {
-	res.end("products");
-};
+module.exports.getUsersSecurePage = (req, res) => {
+	//at this case data is valid / need return page
 
-module.exports.handler3 = (req, res) => {
-	const users = [
-		{
-			firstName: "John",
-			lastName: "Doe",
-		},
-		{
-			firstName: "Jake",
-			lastName: "Smith",
-		},
-		{
-			firstName: "Kate",
-			lastName: "Willson",
-		},
-	];
-	res.send(users);
+	const filePath = path.join(__dirname, "../views/secure-page.html");
+
+	fs.readFile(filePath).then((result) => res.send(result));
 };
 
