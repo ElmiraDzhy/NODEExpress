@@ -3,10 +3,24 @@ module.exports.handler = (req, res) => {
 };
 
 module.exports.handler2 = (req, res) => {
-	res.end("product");
+	res.end("products");
 };
 
 module.exports.handler3 = (req, res) => {
-	res.end("users");
+	const users = [
+		{
+			firstName: "John",
+			lastName: "Doe",
+		},
+		{
+			firstName: "Jake",
+			lastName: "Smith",
+		},
+		{
+			firstName: "Kate",
+			lastName: "Willson",
+		},
+	];
+	res.send(users);
 };
 

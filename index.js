@@ -1,16 +1,14 @@
-const express = require("express");
+const express = require( "express" );
 const { handler, handler2, handler3 } = require("./controllers/User.controller");
+const { validateUserAccess } = require("./middleware/validateUser");
+
 const app = express();
+const bodyParser = express.json(); //return function middleware
 
-app.get("/index", validateUserAccess, handler);
-app.get("/product", validateUserAccess, handler2);
-app.get("/users", validateUserAccess, handler3);
 
-app.post("/users", userHandler);
-
-function userHandler(req, res, next) {
-	res.status(400).end("user cannot be created");
-}
+app.post("/index", bodyParser, validateUserAccess, handler);
+app.post("/product", bodyParser, validateUserAccess, handler2);
+app.post("/users", bodyParser, validateUserAccess, handler3);
 
 app.listen(3002);
 
