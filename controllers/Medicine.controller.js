@@ -31,3 +31,28 @@ module.exports.getOneMed = async (req, res) => {
 	}
 };
 
+module.exports.updateMed = async (req, res) => {
+	const { name, price, quantity } = req.body;
+
+	try {
+		const med = await MedicineDB.getOneMedicine(name);
+		const newMed = await MedicineDB.updateMedicine(med, quantity);
+		await MedicineDB.addNewMedicine(newMed);
+		console.log(newMed);
+		res.status(200).send(newMed);
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+module.exports.deleteMed = async (req, res) => {
+	try {
+		const { name } = req.params;
+		const deletedMed = await MedicineDB.getOneMedicine(name);
+		await MedicineDB.deleteMedicine(name);
+		res.status(200).send(deletedMed);
+	} catch (e) {
+		console.log(e);
+	}
+};
+

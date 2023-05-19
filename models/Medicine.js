@@ -21,6 +21,12 @@ class MedicineDB {
 	static async getOneMedicine(name) {
 		return map.get(name);
 	}
+
+	static async updateMedicine(med, quantity) {
+		med.quantity = quantity;
+		map.set(med.name, med);
+		return med;
+	}
 }
 
 class Medicine {
