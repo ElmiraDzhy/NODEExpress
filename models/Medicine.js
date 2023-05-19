@@ -1,28 +1,24 @@
 const map = new Map();
 
 class MedicineDB {
-	constructor() {
-		this.db = map;
-	}
-
 	/**
 	 *
 	 * @param {Medicine} med
 	 */
-	static addNewMedicine(med) {
-		this.db.set(med.name, med);
+	static async addNewMedicine(med) {
+		map.set(med.name, med);
 	}
 
-	static getAllMedicine() {
-		return [...this.db.values()];
+	static async getAllMedicine() {
+		return [...map.values()];
 	}
 
-	static deleteMedicine(name) {
-		this.db.delete(name);
+	static async deleteMedicine(name) {
+		map.delete(name);
 	}
 
-	static getOneMedicine(name) {
-		return this.db.get(name);
+	static async getOneMedicine(name) {
+		return map.get(name);
 	}
 }
 
@@ -60,4 +56,9 @@ class Medicine {
 		this._quantity = v;
 	}
 }
+
+module.exports = {
+	Medicine,
+	MedicineDB,
+};
 
