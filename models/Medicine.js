@@ -22,9 +22,11 @@ class MedicineDB {
 		return map.get(name);
 	}
 
-	static async updateMedicine(med, quantity) {
+	static async updateMedicine({ name, price, quantity }) {
+		const med = map.get(name);
 		med.quantity = quantity;
-		map.set(med.name, med);
+		med.price = price;
+		map.set(name, med);
 		return med;
 	}
 }

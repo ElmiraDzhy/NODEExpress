@@ -32,13 +32,8 @@ module.exports.getOneMed = async (req, res) => {
 };
 
 module.exports.updateMed = async (req, res) => {
-	const { name, price, quantity } = req.body;
-
 	try {
-		const med = await MedicineDB.getOneMedicine(name);
-		const newMed = await MedicineDB.updateMedicine(med, quantity);
-		await MedicineDB.addNewMedicine(newMed);
-		console.log(newMed);
+		const newMed = await MedicineDB.updateMedicine(req.body);
 		res.status(200).send(newMed);
 	} catch (e) {
 		console.log(e);
