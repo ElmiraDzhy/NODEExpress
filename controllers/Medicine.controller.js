@@ -21,3 +21,13 @@ module.exports.getAllMed = async (req, res) => {
 	}
 };
 
+module.exports.getOneMed = async (req, res) => {
+	try {
+		const { name } = req.params;
+		const med = await MedicineDB.getOneMedicine(name);
+		res.status(200).send(med);
+	} catch (e) {
+		console.log(e);
+	}
+};
+
