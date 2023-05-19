@@ -7,6 +7,7 @@ class MedicineDB {
 	 */
 	static async addNewMedicine(med) {
 		map.set(med.name, med);
+		return med;
 	}
 
 	static async getAllMedicine() {
